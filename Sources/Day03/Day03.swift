@@ -5,7 +5,7 @@ struct Coordinates: Hashable {
 
 @available(macOS 15, *)
 @main
-struct Day02 {
+struct Day03 {
     static func main() {
         let directions = readLine()!
 

@@ -32,6 +32,12 @@ let package = Package(
         .target(name: "MD5")
       ]
     ),
+    .executableTarget(
+      name: "Day04",
+      dependencies: [
+        .target(name: "MD5")
+      ]
+    ),
   ],
   swiftLanguageModes: [.v6],
 )

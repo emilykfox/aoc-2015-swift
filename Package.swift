@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
     name: "AoC2015",
     platforms: [
-        .macOS(.v15)
+        .macOS(.v26)
     ],
     dependencies: [
         .package(url: "https://github.com/apple/swift-collections", "1.2.0" ..< "1.3.0"),
@@ -22,6 +22,15 @@ let package = Package(
         ),
         .executableTarget(
             name: "Day03"
+        ),
+        .target(
+            name: "MD5"
+        ),
+        .testTarget(
+            name: "MD5Tests",
+            dependencies: [
+                .target(name: "MD5")
+            ]
         ),
     ]
 )

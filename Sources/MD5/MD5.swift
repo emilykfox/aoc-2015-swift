@@ -93,3 +93,11 @@ public func md5(_ bytes: some Sequence<UInt8>) -> UInt128 {
 
   return UInt128(a0) | (UInt128(b0) << 32) | (UInt128(c0) << 64) | (UInt128(d0) << 96)
 }
+
+public func digest(hash: UInt128) -> String {
+  String(hash.byteSwapped, radix: 16, uppercase: false)
+}
+
+public func digest(bytes: some Sequence<UInt8>) -> String {
+  digest(hash: md5(bytes))
+}

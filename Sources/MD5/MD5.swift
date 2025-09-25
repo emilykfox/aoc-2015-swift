@@ -20,7 +20,7 @@ func leftRotate(_ x: UInt32, _ s: UInt8) -> UInt32 {
   x << s | x >> (32 - s)
 }
 
-public func md5(_ bytes: some Sequence<UInt8>) -> UInt128 {
+public func digest(_ bytes: some Sequence<UInt8>) -> String {
   // Uses algorithm and notation as given on Wikipedia plus streaming code by the file author.
 
   var a0 = initialA
@@ -91,13 +91,19 @@ public func md5(_ bytes: some Sequence<UInt8>) -> UInt128 {
     d0 &+= d
   }
 
-  return UInt128(a0) | (UInt128(b0) << 32) | (UInt128(c0) << 64) | (UInt128(d0) << 96)
+  return byteString(a0) + byteString(b0) + byteString(c0) + byteString(d0)
 }
 
-public func digest(hash: UInt128) -> String {
-  String(hash.byteSwapped, radix: 16, uppercase: false)
-}
+func byteString(_ word: UInt32) -> String {
+  var string = ""
+  for i in 0..<4 {
+    let byte = UInt8(truncatingIfNeeded: word >> (8 * i))
+    if byte < 16 {
+      string += "0" + String(byte, radix: 16, uppercase: false)
+    } else {
+      string += String(byte, radix: 16, uppercase: false)
+    }
+  }
 
-public func digest(bytes: some Sequence<UInt8>) -> String {
-  digest(hash: md5(bytes))
+  return string
 }

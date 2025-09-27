@@ -1,4 +1,5 @@
 import Foundation
+import RegexBuilder
 
 struct Wire {
   enum Incoming {
@@ -21,6 +22,31 @@ struct Wire {
 @main
 struct Day07 {
   static func main() {
+    let capturedInput = Reference(Wire.Incoming.self)
+    let inputRe = Regex {
+      Capture(as: capturedInput) {
+        OneOrMore {
+          .digit.union("a"..."z")
+        }
+      } transform: {
+        if let signal = UInt16($0) {
+          Wire.Incoming.input(signal)
+        } else {
+          Wire.Incoming.wire(String($0))
+        }
+      }
+    }
+
+    let re = Regex {
+      ChoiceOf {
+        Capture {
+          inputRe
+        } transform: { input in
+          Wire.Gate.direct(input)
+        }
+      }
+    }
+
     let re =
       /^(?:(?<direct>\w+)|(?<binary>(?<left>\w+) (?:(?<and>AND)|(?<or>OR)) (?<right>\w+))|(?<shift>(?<toShift>\w+) (?:(?<lShift>LSHIFT)|(?<rShift>RSHIFT)) (?<shiftAmount>\d+))|(?<not>NOT (?<negated>\w+))) -> (?<to>\w+)$/
     var wires: [String: Wire] = [:]

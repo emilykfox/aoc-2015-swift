@@ -14,8 +14,8 @@ struct Day10 {
         if character == reading {
           numRead += 1
         } else {
-          if reading != nil {
-            next.append(contentsOf: "\(numRead)\(reading!)")
+          if let reading {
+            next.append(contentsOf: "\(numRead)\(reading)")
           }
           reading = character
           numRead = 1

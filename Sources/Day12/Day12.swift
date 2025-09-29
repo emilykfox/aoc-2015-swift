@@ -1,11 +1,7 @@
 import Foundation
 
-struct Books: Codable {
-
-}
-
 @main
-struct Day11 {
+struct Day12 {
   static func main() throws {
     let regex = /-?\d+/
     let redex =

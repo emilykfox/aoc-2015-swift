@@ -59,6 +59,9 @@ let package = Package(
     .executableTarget(
       name: "Day11"
     ),
+    .executableTarget(
+      name: "Day12"
+    ),
   ],
   swiftLanguageModes: [.v6],
 )

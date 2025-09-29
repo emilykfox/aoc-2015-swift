@@ -9,7 +9,8 @@ let package = Package(
     .macOS(.v26)
   ],
   dependencies: [
-    .package(url: "https://github.com/apple/swift-collections", "1.2.0"..<"1.3.0")
+    .package(url: "https://github.com/apple/swift-collections", from: "1.2.0"),
+    .package(url: "https://github.com/apple/swift-algorithms", from: "1.2.0"),
   ],
   targets: [
     // Targets are the basic building blocks of a package, defining a module or a test suite.
@@ -61,6 +62,12 @@ let package = Package(
     ),
     .executableTarget(
       name: "Day12"
+    ),
+    .executableTarget(
+      name: "Day13",
+      dependencies: [
+        .product(name: "Algorithms", package: "swift-algorithms")
+      ]
     ),
   ],
   swiftLanguageModes: [.v6],

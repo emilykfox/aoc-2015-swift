@@ -69,6 +69,9 @@ let package = Package(
         .product(name: "Algorithms", package: "swift-algorithms")
       ]
     ),
+    .executableTarget(
+      name: "Day14"
+    ),
   ],
   swiftLanguageModes: [.v6],
 )

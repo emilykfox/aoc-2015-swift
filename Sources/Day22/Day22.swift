@@ -20,7 +20,7 @@ struct MinManaParameters: Hashable {
 }
 
 @main
-struct Day21 {
+struct Day22 {
   static func main() throws {
     let bossHP = Int(readLine()!.firstMatch(of: /\d+/)!.0)!
     let bossDamage = Int(readLine()!.firstMatch(of: /\d+/)!.0)!
